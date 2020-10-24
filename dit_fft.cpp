@@ -1,6 +1,12 @@
+//DSP - DIT FFT 
+//List out 2^k points (real/complex) in: input_seq[]
+//Twiddle computation: complex WN[]
+//Capable of ultimately handling only Radix-2 DFT computation. N = power of 2
+
+//******************************************************************
+
 # include <iostream>
-#include <complex.h>
-# include <stdio.h>
+# include <complex.h>
 # include <stdlib.h>
 # include <cmath>
 # include <ctime>
@@ -9,12 +15,11 @@ using namespace std;
 int main()
 {
     complex* DIT_FFT_reordered(complex input_seq[], int N);
-    complex* DIT_FFT(complex input_seq[], int N, complex WN[], int recur_time_count);
+    complex* DIT_FFT(complex input_seq[], int N, complex WN[], int recur_time_count);     
 
-    complex* DIT_FFT_reordered(complex input_seq[], int N)
-
+    complex* DIT_FFT_reordered(complex input_seq[], int N)                                                       
     {
-        complex* reordered_seq = new complex[N];
+        complex* reordered_seq = new complex[N];   //Initialize
 
         complex* WN = new complex[N];
         WN = Calc_WN(N);
@@ -23,13 +28,13 @@ int main()
 
         reordered_seq = DIT_FFT(reordered_seq, N, WN, 0);
 
-        return reordered_seq;
+        return reordered_seq;   //Bit reversed sequence obtained - Decimated in time
     }
 
     complex* DIT_FFT(complex input_seq[], int N, complex WN[], int recur_time_count)
     {
         complex* return_seq = new complex[N];
-        if ( N != 2 )
+        if (N != 2)
         {
             int k = pow(2,recur_time_count);
             complex* first_half_input_seq = new complex[N/2];
@@ -57,17 +62,17 @@ int main()
 		}
         for (int i = 0; i < N/2; ++i)
         {
-			output_second_half_seq[i] = ComplexAdd(DFTed_first_half_seq[i], ComplexMul( ReverseComplex(DFTed_second_half_seq[i]), WN[i*k] ) );
+			output_second_half_seq[i] = ComplexAdd(DFTed_first_half_seq[i], ComplexMul(ReverseComplex(DFTed_second_half_seq[i]), WN[i*k]));
 		}
 
 		return_seq = append_seq(output_first_half_seq, output_second_half_seq, N/2);
 		return return_seq;
 
         }
-        else if ( N == 2 )
+        else if ( N == 2 )   //Butterfly stage k-1 to handle 2 point FFT computation
         {
-            return_seq[0] = ComplexAdd(input_seq[0], ComplexMul(input_seq[1], WN[0]) );
-            return_seq[1] = ComplexAdd(input_seq[0], ComplexMul( ReverseComplex(input_seq[1]), WN[0] ) );
+            return_seq[0] = ComplexAdd(input_seq[0], ComplexMul(input_seq[1], WN[0]));
+            return_seq[1] = ComplexAdd(input_seq[0], ComplexMul( ReverseComplex(input_seq[1]), WN[0]));   //Final complex X(w) sequence FFT
             return return_seq;
         }
         return return_seq;
