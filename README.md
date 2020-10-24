@@ -14,5 +14,5 @@ The radix-2 DIT algorithm rearranges the discrete Fourier transform equation int
 
 ## References
 Spectral Analysis: https://cnx.org/contents/0sbTkzWQ@2.2:zmcmahhR@7/Decimation-in-time-DIT-Radix-2-FFT <br>
-FPGA Implementation of FFT: https://www.semanticscholar.org/paper/Simple-Computation-of-DIT-FFT <br>
-Frequency Decimation: https://www.researchgate.net/figure/point-radix-2-DIF-FFT_fig8_299520102
+Frequency Decimation: https://www.researchgate.net/figure/point-radix-2-DIF-FFT_fig8_299520102 <br>
+FPGA Implementation of FFT: https://www.semanticscholar.org/paper/Simple-Computation-of-DIT-FFT 
