@@ -1,4 +1,4 @@
-//DSP - DIT FFT
+//DSP - DIF FFT
 //List out 2^k points (real/complex) in: input_seq[]
 //Twiddle computation: complex WN[]
 //Capable of ultimately handling only Radix-2 DFT computation. N = power of 2
