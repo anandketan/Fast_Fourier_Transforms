@@ -19,7 +19,7 @@ int main()
 
     complex* DIT_FFT_reordered(complex input_seq[], int N)                                                       
     {
-        complex* reordered_seq = new complex[N];   //Initialize
+        complex* reordered_seq = new complex[N];   //Initialize time sequence
 
         complex* WN = new complex[N];
         WN = Calc_WN(N);
